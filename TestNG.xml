@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name = "Automation Module Test" parallel="classes" thread-count="1">
+    <test name="Teapot Website Test">
+        <classes>
+            <class name="basic.SearchProductTest"/>
+            <class name="basic.PasswordRecoveryTest"/>
+            <class name="basic.StoreReviewTest"/>
+            <class name="basic.ProductComparisonTest"/>
+            <class name="basic.ProductPromoListsTest"/>
+            <class name="basic.BannersGridTest"/>
+            <class name="basic.LoginFormTest"/>
+            <class name="basic.RegisterFormTest"/>
+        </classes>
+    </test>
+</suite>
