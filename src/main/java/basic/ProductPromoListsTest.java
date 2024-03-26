@@ -13,7 +13,7 @@ public class ProductPromoListsTest extends BaseTest {
      * Test information in the promo list and in the details.
      */
     @Test
-    public void thirdTest() {
+    public void promoItemsPriceMatchTest() {
         int index = 0;
         webDriver.get(url);
 
@@ -35,6 +35,6 @@ public class ProductPromoListsTest extends BaseTest {
         WebElement detailsPrice = webDriver.findElement(By.xpath(priceDetailsXpath));
         String detailsItemPrice = detailsPrice.getText().trim();
 
-        Assert.assertEquals(detailsItemPrice, listItemPrice, "Price from the list should match title in the item details");
+        Assert.assertEquals(detailsItemPrice, listItemPrice, "Price from the list should match price in the item details");
     }
 }

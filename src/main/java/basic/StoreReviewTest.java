@@ -13,7 +13,7 @@ public class StoreReviewTest extends BaseTest {
      * Check review author
      */
     @Test
-    public void fourthTest() {
+    public void reviewAuthorPresenceTest() {
         String xpath = "//div[@class='top-reviews__carousel']//span[@class='review-item__name']";
         webDriver.get(url);
 

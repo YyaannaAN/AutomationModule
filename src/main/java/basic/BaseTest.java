@@ -21,7 +21,7 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void initDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size=1980,720");
+        options.addArguments("--window-size=1980,1024");
 
         webDriver = new ChromeDriver(options);
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

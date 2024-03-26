@@ -16,7 +16,7 @@ public class SearchProductTest extends BaseTest {
      * but becomes visible after clicking on the search button.
      */
     @Test
-    public void firstTest() {
+    public void searchFieldAvailabilityTest() {
         webDriver.get(url);
         String searchInputXpath = "//input[contains(concat(' ', normalize-space(@class), ' '), ' search__input ')]";
         String searchButtonXpath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' search__button ')]";
@@ -37,7 +37,7 @@ public class SearchProductTest extends BaseTest {
      * Positive search of existing products
      */
     @Test
-    public void sixthTest() {
+    public void positiveProductSearchTest() {
         String text = "каструлі";
         webDriver.get(url);
         String searchInputXpath = "//input[contains(concat(' ', normalize-space(@class), ' '), ' search__input ')]";
@@ -62,7 +62,7 @@ public class SearchProductTest extends BaseTest {
      * Negative search of non-existing products
      */
     @Test
-    public void seventhTest() {
+    public void negativeProductSearchTest() {
         String text = "akasjdfkasjkdfsajfd";
         webDriver.get(url);
         String searchInputXpath = "//input[contains(concat(' ', normalize-space(@class), ' '), ' search__input ')]";

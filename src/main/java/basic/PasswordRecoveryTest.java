@@ -35,7 +35,7 @@ public class PasswordRecoveryTest extends BaseTest {
      * Check recovery email form exits with corresponding content.
      */
     @Test(groups={"positive"})
-    public void twelfthTest() {
+    public void requiredElementsPresenceTest() {
         goToPasswordRecoveryPage();
 
         String xpathRecoveryTitle = "//section[@id='password-recovery']//div[@class='popup-title']";
@@ -71,7 +71,7 @@ public class PasswordRecoveryTest extends BaseTest {
      * Check password recovery form for empty email field submission
      */
     @Test(groups={"negative"})
-    public void thirteenthTest() {
+    public void emptyEmailSubmitTest() {
         goToPasswordRecoveryPage();
 
         // Get recovery email field
@@ -97,7 +97,7 @@ public class PasswordRecoveryTest extends BaseTest {
      * Check password recovery form for incorrect email value submission
      */
     @Test(groups={"negative"})
-    public void fourteenthTest() {
+    public void incorrectEmailErrorTest() {
         goToPasswordRecoveryPage();
 
         // Get recovery email field
@@ -124,7 +124,7 @@ public class PasswordRecoveryTest extends BaseTest {
      * Check password recovery window can be closed.
      */
     @Test(groups={"positive"})
-    public void fifteenthTest() {
+    public void popupCloseTest() {
         goToPasswordRecoveryPage();
 
         By recoveryLocator = By.id("password-recovery");

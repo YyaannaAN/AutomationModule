@@ -47,7 +47,7 @@ public class ProductComparisonTest extends BaseTest {
      * Check that 2 items available for comparison.
      */
     @Test
-    public void fifthTest() {
+    public void productCompareTest() {
         String customUrl = url + "/nabory-kastrul";
         webDriver.get(customUrl);
 

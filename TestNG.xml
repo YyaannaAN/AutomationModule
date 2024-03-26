@@ -8,7 +8,7 @@
             <class name="basic.StoreReviewTest"/>
             <class name="basic.ProductComparisonTest"/>
             <class name="basic.ProductPromoListsTest"/>
-            <class name="basic.BannersGridTest"/>
+            <class name="basic.BannerListTest"/>
             <class name="basic.LoginFormTest"/>
             <class name="basic.RegisterFormTest"/>
         </classes>

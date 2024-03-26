@@ -12,7 +12,7 @@ public class LoginFormTest extends BaseTest {
      * Simple test of Login tab
      */
     @Test
-    public void eighthTest() {
+    public void loginFormTitleTest() {
         webDriver.get(url);
         String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";
         String xpathLoginTab = "//*[text()='Вхід']/..";
@@ -28,7 +28,7 @@ public class LoginFormTest extends BaseTest {
      * Should be 2 fields in the login form.
      */
     @Test
-    public void ninthTest() {
+    public void loginFormFieldsAndButtonPresenceTest() {
         webDriver.get(url);
         String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";
         String xpathLoginTab = "//*[text()='Вхід']/..";
@@ -62,7 +62,7 @@ public class LoginFormTest extends BaseTest {
      * Check login form for empty fields submission
      */
     @Test(groups={"negative"})
-    public void tenthTest() {
+    public void emptyFieldsSubmitTest() {
         webDriver.get(url);
 
         String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";

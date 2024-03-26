@@ -11,8 +11,8 @@ public class RegisterFormTest extends BaseTest {
     /**
      * Check register form for empty fields submission
      */
-    @Test(groups={"negative"})
-    public void eleventhTest() {
+    @Test(groups = {"negative"})
+    public void emptyFieldsSubmitTest() {
         webDriver.get(url);
 
         String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";

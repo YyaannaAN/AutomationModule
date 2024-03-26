@@ -7,13 +7,13 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class BannersGridTest extends BaseTest {
+public class BannerListTest extends BaseTest {
 
     /**
      * The list of items in banners grid should not be empty.
      */
     @Test(groups = {"positive"})
-    public void secondTest() {
+    public void getNotEmptyBannerListTest() {
         webDriver.get(url);
         String bannerLinksXpath = "//div[@class='banners__container']/div[@class='banners__grid']//a[@class='banner-a']";
         List<WebElement> list = webDriver.findElements(By.xpath(bannerLinksXpath));
@@ -21,3 +21,4 @@ public class BannersGridTest extends BaseTest {
     }
 
 }
+
