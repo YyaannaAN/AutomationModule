@@ -3,14 +3,14 @@
 <suite name = "Automation Module Test" parallel="classes" thread-count="1">
     <test name="Teapot Website Test">
         <classes>
-            <class name="basic.SearchProductTest"/>
-            <class name="basic.PasswordRecoveryTest"/>
-            <class name="basic.StoreReviewTest"/>
-            <class name="basic.ProductComparisonTest"/>
-            <class name="basic.ProductPromoListsTest"/>
-            <class name="basic.BannerListTest"/>
-            <class name="basic.LoginFormTest"/>
-            <class name="basic.RegisterFormTest"/>
+            <class name="SearchProductTest"/>
+            <class name="PasswordRecoveryTest"/>
+            <class name="StoreReviewTest"/>
+            <class name="ProductComparisonTest"/>
+            <class name="ProductPromoListsTest"/>
+            <class name="BannerListTest"/>
+            <class name="LoginFormTest"/>
+            <class name="RegisterFormTest"/>
         </classes>
     </test>
 </suite>

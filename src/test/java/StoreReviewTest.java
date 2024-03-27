@@ -1,5 +1,4 @@
-package basic;
-
+import basic.BaseTest;
 import basic.pages.components.StoreReviewComponent;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

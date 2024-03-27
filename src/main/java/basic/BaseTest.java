@@ -13,8 +13,8 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseTest {
-    public WebDriver webDriver;
+public abstract class BaseTest {
+    protected WebDriver webDriver;
 
     protected String url = "https://krauff.store";
 
