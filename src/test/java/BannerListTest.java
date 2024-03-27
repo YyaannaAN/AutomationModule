@@ -8,6 +8,7 @@ public class BannerListTest extends BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
+
         bannerListComponent = new BannerListComponent(webDriver);
     }
 

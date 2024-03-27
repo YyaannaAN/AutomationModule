@@ -77,6 +77,7 @@ public class PanSetPage extends BasePage {
     }
 
     public void openComparisonPopup() {
+
         toComparison.click();
     }
 

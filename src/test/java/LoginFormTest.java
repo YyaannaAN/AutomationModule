@@ -1,25 +1,33 @@
-import org.openqa.selenium.By;
+import basic.pages.components.LoginFormComponent;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class LoginFormTest extends BaseTest {
+    private LoginFormComponent loginFormComponent;
+
+    @BeforeMethod
+    public void beforeMethod() {
+        loginFormComponent = new LoginFormComponent(webDriver);
+    }
+
     /**
      * Simple test of Login tab
      */
     @Test
     public void loginFormTitleTest() {
         webDriver.get(url);
-        String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";
-        String xpathLoginTab = "//*[text()='Вхід']/..";
+        loginFormComponent.openLoginPopup();
 
-        WebElement profile = webDriver.findElement(By.xpath(xpathProfile));
-        profile.click();
-
-        WebElement loginTab = webDriver.findElement(By.xpath(xpathLoginTab));
-        Assert.assertEquals(loginTab.getText(), "Вхід", "Login tab name should be correct.");
+        WebElement loginTab = loginFormComponent.getLoginTab();
+        Assert.assertEquals(
+                loginTab.getText(),
+                "Вхід",
+                "Login tab name should be correct."
+        );
     }
 
     /**
@@ -28,61 +36,59 @@ public class LoginFormTest extends BaseTest {
     @Test
     public void loginFormFieldsAndButtonPresenceTest() {
         webDriver.get(url);
-        String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";
-        String xpathLoginTab = "//*[text()='Вхід']/..";
-
-        // Go to profile window to signin or signup
-        WebElement profile = webDriver.findElement(By.xpath(xpathProfile));
-        profile.click();
-
-        // Go to Sign in form
-        WebElement loginTab = webDriver.findElement(By.xpath(xpathLoginTab));
-        loginTab.click();
-
-        String xpathLogin = "//form[@id='login_form_id']//input[@name='user[email]']";
-        String xpathPassword = "//form[@id='login_form_id']//input[@name='user[pass]']";
-        String xpathSubmit = "//form[@id='login_form_id']//input[@type='submit'][@class='btn-input']";
+        loginFormComponent.openLoginPopup();
 
         // Get form items for testing.
-        WebElement login = webDriver.findElement(By.xpath(xpathLogin));
-        WebElement password = webDriver.findElement(By.xpath(xpathPassword));
-        WebElement submit = webDriver.findElement(By.xpath(xpathSubmit));
+        WebElement login = loginFormComponent.getLogin();
+        WebElement password = loginFormComponent.getPassword();
+        WebElement submit = loginFormComponent.getSubmit();
 
-        Assert.assertTrue(login.isDisplayed(), "Login field should be present in the form.");
-        Assert.assertTrue(password.isDisplayed(), "Password field should be present in the form.");
-        Assert.assertEquals(submit.getAttribute("value"), "Увійти", "Button should have correct label");
+        Assert.assertTrue(
+                login.isDisplayed(),
+                "Login field should be present in the form."
+        );
+        Assert.assertTrue(
+                password.isDisplayed(),
+                "Password field should be present in the form."
+        );
+        Assert.assertEquals(
+                submit.getAttribute("value"),
+                "Увійти",
+                "Button should have correct label"
+        );
         // Protected by captcha
-        Assert.assertTrue(submit.isEnabled(), "Submit button should be enabled in the form.");
+        Assert.assertTrue(
+                submit.isEnabled(),
+                "Submit button should be enabled in the form."
+        );
     }
-
 
     /**
      * Check login form for empty fields submission
      */
-    @Test(groups={"negative"})
+    @Test(groups = {"negative"})
     public void emptyFieldsSubmitTest() {
         webDriver.get(url);
 
-        String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";
-        String xpathLoginTab = "//*[text()='Вхід']/..";
+        loginFormComponent.openLoginPopup();
+        loginFormComponent.submitForm();
 
-        // Go to profile window to signin or signup
-        WebElement profile = webDriver.findElement(By.xpath(xpathProfile));
-        profile.click();
+        List<WebElement> errorList = loginFormComponent.getErrorList();
 
-        // Go to Sign in form
-        WebElement loginTab = webDriver.findElement(By.xpath(xpathLoginTab));
-        loginTab.click();
-
-        String xpathSubmit = "//form[@id='login_form_id']//input[@type='submit'][@class='btn-input']";
-        WebElement submit = webDriver.findElement(By.xpath(xpathSubmit));
-        submit.click();
-
-        String xpathErrors = "//div[@class='form-error']/div[contains(concat(' ', normalize-space(@class), ' '), ' form-error-box ')]";
-        List<WebElement> errorList = getElementsByXpath(xpathErrors);
-
-        Assert.assertEquals(errorList.size(), 2, "Should be 2 errors");
-        Assert.assertEquals(errorList.get(0).getText(), "Некоректна адреса електронної пошти", "Should match empty login error.");
-        Assert.assertEquals(errorList.get(1).getText(), "Вкажіть пароль", "Should match empty password error.");
+        Assert.assertEquals(
+                errorList.size(),
+                2,
+                "Should be 2 errors"
+        );
+        Assert.assertEquals(
+                errorList.get(0).getText(),
+                "Некоректна адреса електронної пошти",
+                "Should match empty login error."
+        );
+        Assert.assertEquals(
+                errorList.get(1).getText(),
+                "Вкажіть пароль",
+                "Should match empty password error."
+        );
     }
 }
