@@ -1,4 +1,3 @@
-import basic.BaseTest;
 import basic.pages.components.StoreReviewComponent;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -22,9 +21,11 @@ public class StoreReviewTest extends BaseTest {
         webDriver.get(url);
         Assert.assertTrue(
                 storeReviewComponent.getAuthor().isDisplayed(),
-                "Review author should be visible on the page");
+                "Review author should be visible on the page"
+        );
         Assert.assertFalse(
                 storeReviewComponent.getAuthorName().isEmpty(),
-                "Review author name should be present");
+                "Review author name should be present"
+        );
     }
 }

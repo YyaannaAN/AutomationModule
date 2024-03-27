@@ -1,4 +1,3 @@
-import basic.BaseTest;
 import basic.pages.components.BannerListComponent;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -18,6 +17,9 @@ public class BannerListTest extends BaseTest {
     @Test(groups = {"positive"})
     public void getNotEmptyBannerListTest() {
         webDriver.get(url);
-        Assert.assertFalse(bannerListComponent.getBannerList().isEmpty(), "Search result list must have at least one item.");
+        Assert.assertFalse(
+                bannerListComponent.getBannerList().isEmpty(),
+                "Search result list must have at least one item."
+        );
     }
 }
