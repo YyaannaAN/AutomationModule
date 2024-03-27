@@ -32,39 +32,11 @@ public abstract class BaseTest {
 
     // HELPER FUNCTIONS ------------------------------------
 
-    public void addToCompareItemSafe(int itemIndex, WebElement originalItem, String xpathToProducts) {
-        try {
-            originalItem.click();
-        } catch (StaleElementReferenceException e) {
-            List<WebElement> productList = webDriver.findElements(By.xpath(xpathToProducts));
-            WebElement item = productList.get(itemIndex);
-            item.click();
-        }
-    }
 
+//TODO: remove after usage
     public List<WebElement> getElementsByXpath(String xpath) {
         return webDriver.findElements(By.xpath(xpath));
     }
 
-    public String getElementValue(WebElement element) {
-        return element.getText().trim();
-    }
 
-    public List<String> getValuesFromCatalog(String xpath) {
-        List<WebElement> list = getElementsByXpath(xpath);
-        List<String> result = new ArrayList<>();
-        result.add(getElementValue(list.get(0)));
-        result.add(getElementValue(list.get(1)));
-        return result;
-    }
-
-    public List<String> getPricesFromCatalog() {
-        String xpathPricesInCatalog = "//div[@class='catalog__content']//div[@class='catalogCard-price']";
-        return getValuesFromCatalog(xpathPricesInCatalog);
-    }
-
-    public List<String> getPricesFromComparison() {
-        String xpathPricesInComparison = "//div[@class='compare-window']//table[@class='compare-table']//td//div[@class='catalogCard-price']";
-        return getValuesFromCatalog(xpathPricesInComparison);
-    }
 }

@@ -1,11 +1,19 @@
-import org.openqa.selenium.By;
+import basic.pages.components.RegisterFormComponent;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class RegisterFormTest extends BaseTest {
+    private RegisterFormComponent registerFormComponent;
+
+    @BeforeMethod
+    public void beforeMethod() {
+        registerFormComponent = new RegisterFormComponent(webDriver);
+    }
+
     /**
      * Check register form for empty fields submission
      */
@@ -13,23 +21,14 @@ public class RegisterFormTest extends BaseTest {
     public void emptyFieldsSubmitTest() {
         webDriver.get(url);
 
-        String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";
-        String xpathSignupTab = "//*[text()='Реєстрація']/..";
-
         // Go to profile window to signin or signup
-        WebElement profile = webDriver.findElement(By.xpath(xpathProfile));
-        profile.click();
+        registerFormComponent.getProfile().click();
 
-        // Go to Sign in form
-        WebElement signupTab = webDriver.findElement(By.xpath(xpathSignupTab));
-        signupTab.click();
+        registerFormComponent.getSighupTab().click();
 
-        String xpathSubmit = "//form[@id='signup-form']//input[@type='submit'][@class='btn-input']";
-        WebElement submit = webDriver.findElement(By.xpath(xpathSubmit));
-        submit.click();
+        registerFormComponent.getSubmit().click();
 
-        String xpathErrors = "//div[@class='form-error']/div[contains(concat(' ', normalize-space(@class), ' '), ' form-error-box ')]";
-        List<WebElement> errorList = getElementsByXpath(xpathErrors);
+        List<WebElement> errorList = registerFormComponent.getErrorList();
 
         Assert.assertEquals(errorList.size(), 3, "Should be 3 errors");
         Assert.assertEquals(errorList.get(0).getText(), "Вкажіть ім'я", "Should match empty name error.");
