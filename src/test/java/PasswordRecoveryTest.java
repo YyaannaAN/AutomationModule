@@ -1,49 +1,38 @@
-import org.openqa.selenium.By;
+import basic.pages.components.LoginFormComponent;
+import basic.pages.components.PasswordRecoveryComponent;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 import java.util.List;
 
 public class PasswordRecoveryTest extends BaseTest {
+    private PasswordRecoveryComponent passwordRecoveryComponent;
+    private LoginFormComponent loginFormComponent;
+
+    @BeforeMethod
+    public void beforeMethod() {
+        passwordRecoveryComponent = new PasswordRecoveryComponent(webDriver);
+        loginFormComponent = new LoginFormComponent(webDriver);
+    }
+
     public void goToPasswordRecoveryPage() {
         webDriver.get(url);
-        String xpathProfile = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]";
-        String xpathLoginTab = "//*[text()='Вхід']/..";
-
-        // Go to profile window to signin or signup
-        WebElement profile = webDriver.findElement(By.xpath(xpathProfile));
-        profile.click();
-
-        // Go to Sign in form
-        WebElement loginTab = webDriver.findElement(By.xpath(xpathLoginTab));
-        loginTab.click();
-
-        String xpathRecover = "//span[@class='form-passRecover']/a";
-
-        // Go to Sign in form
-        WebElement recoverLink = webDriver.findElement(By.xpath(xpathRecover));
-        recoverLink.click();
+        loginFormComponent.openLoginPopup();
+        passwordRecoveryComponent.openRecoveryPopup();
     }
 
     /**
      * Check recovery email form exits with corresponding content.
      */
-    @Test(groups={"positive"})
+    @Test(groups = {"positive"})
     public void requiredElementsPresenceTest() {
         goToPasswordRecoveryPage();
 
-        String xpathRecoveryTitle = "//section[@id='password-recovery']//div[@class='popup-title']";
-        WebElement recoverTitle = webDriver.findElement(By.xpath(xpathRecoveryTitle));
-
-        String xpathRecoveryMessage = "//section[@id='password-recovery']//div[@class='popup-msg j-recovery-message']";
-        WebElement recoverMessage = webDriver.findElement(By.xpath(xpathRecoveryMessage));
-
-        String xpathSubmit = "//form[@id='password-recovery-form']//input[@type='submit']";
-        WebElement submit = webDriver.findElement(By.xpath(xpathSubmit));
+        WebElement recoverTitle = passwordRecoveryComponent.getRecoverTitle();
+        WebElement recoverMessage = passwordRecoveryComponent.getRecoverMessage();
+        WebElement submit = passwordRecoveryComponent.getSubmit();
 
         // check Recovery page title
         Assert.assertTrue(recoverTitle.isDisplayed(), "Recovery page title should be visible.");
@@ -59,33 +48,26 @@ public class PasswordRecoveryTest extends BaseTest {
         Assert.assertTrue(submit.isEnabled(), "Submit button should be enabled in the form.");
 
         // Get recovery email field
-        String xpathRecoveryEmail = "//form[@id='password-recovery-form']//input[@name='user[email]']";
-        WebElement recoveryEmail = webDriver.findElement(By.xpath(xpathRecoveryEmail ));
+        WebElement recoverEmail = passwordRecoveryComponent.getRecoverEmail();
 
-        Assert.assertTrue(recoveryEmail.isDisplayed(), "Recovery email field should be present in the form.");
+        Assert.assertTrue(recoverEmail.isDisplayed(), "Recovery email field should be present in the form.");
     }
 
     /**
      * Check password recovery form for empty email field submission
      */
-    @Test(groups={"negative"})
+    @Test(groups = {"negative"})
     public void emptyEmailSubmitTest() {
         goToPasswordRecoveryPage();
 
         // Get recovery email field
-        String xpathRecoveryEmail = "//form[@id='password-recovery-form']//input[@name='user[email]']";
-        WebElement recoveryEmail = webDriver.findElement(By.xpath(xpathRecoveryEmail ));
+        WebElement recoverEmail = passwordRecoveryComponent.getRecoverEmail();
 
-        Assert.assertEquals(recoveryEmail.getText(), "", "Recovery email field should be blank.");
+        Assert.assertEquals(recoverEmail.getText(), "", "Recovery email field should be blank.");
 
         // Get recovery form submit button
-        String xpathSubmit = "//form[@id='password-recovery-form']//input[@type='submit']";
-        WebElement submit = webDriver.findElement(By.xpath(xpathSubmit));
-
-        submit.click();
-
-        String xpathErrors = "//div[@class='form-error']/div[contains(concat(' ', normalize-space(@class), ' '), ' form-error-box ')]";
-        List<WebElement> errorList = getElementsByXpath(xpathErrors);
+        passwordRecoveryComponent.submit();
+        List<WebElement> errorList = passwordRecoveryComponent.getErrorList();
 
         Assert.assertEquals(errorList.size(), 1, "Should be 1 error");
         Assert.assertEquals(errorList.get(0).getText(), "Некоректна адреса електронної пошти", "Should match empty email error.");
@@ -94,25 +76,19 @@ public class PasswordRecoveryTest extends BaseTest {
     /**
      * Check password recovery form for incorrect email value submission
      */
-    @Test(groups={"negative"})
+    @Test(groups = {"negative"})
     public void incorrectEmailErrorTest() {
         goToPasswordRecoveryPage();
 
         // Get recovery email field
-        String xpathRecoveryEmail = "//form[@id='password-recovery-form']//input[@name='user[email]']";
-        WebElement recoveryEmail = webDriver.findElement(By.xpath(xpathRecoveryEmail ));
+        WebElement recoverEmail = passwordRecoveryComponent.getRecoverEmail();
 
-        Assert.assertEquals(recoveryEmail.getText(), "", "Recovery email field should be blank.");
-        recoveryEmail.sendKeys("1235@sjdfk.sj");
+        Assert.assertEquals(recoverEmail.getText(), "", "Recovery email field should be blank.");
+        recoverEmail.sendKeys("1235@sjdfk.sj");
 
         // Get recovery form submit button
-        String xpathSubmit = "//form[@id='password-recovery-form']//input[@type='submit']";
-        WebElement submit = webDriver.findElement(By.xpath(xpathSubmit));
-
-        submit.click();
-
-        String xpathErrors = "//div[@class='form-error']/div[contains(concat(' ', normalize-space(@class), ' '), ' form-error-box ')]";
-        List<WebElement> errorList = getElementsByXpath(xpathErrors);
+        passwordRecoveryComponent.submit();
+        List<WebElement> errorList = passwordRecoveryComponent.getErrorList();
 
         Assert.assertEquals(errorList.size(), 1, "Should be 1 error");
         Assert.assertEquals(errorList.get(0).getText(), "Немає користувача з такою адресою е-пошти", "Should match empty email error.");
@@ -121,25 +97,16 @@ public class PasswordRecoveryTest extends BaseTest {
     /**
      * Check password recovery window can be closed.
      */
-    @Test(groups={"positive"})
+    @Test(groups = {"positive"})
     public void popupCloseTest() {
         goToPasswordRecoveryPage();
 
-        By recoveryLocator = By.id("password-recovery");
-        WebElement recoveryPopup = webDriver.findElement(recoveryLocator);
+        WebElement recoverPopup = passwordRecoveryComponent.getRecoverPopup();
 
-        Assert.assertTrue(recoveryPopup.isDisplayed(), "Password recovery window should be visible.");
+        Assert.assertTrue(recoverPopup.isDisplayed(), "Password recovery window should be visible.");
 
-        // Get close button
-
-        String xpathClose = "//section[@id='password-recovery']//a[@class='popup-close']";
-        WebElement close = webDriver.findElement(By.xpath(xpathClose ));
-        close.click();
-
-        // Wait until popup is closed.
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(5)); // 5 seconds timeout
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(recoveryLocator));
-
-        Assert.assertFalse(recoveryPopup.isDisplayed(), "Password recovery window should be closed.");
+        passwordRecoveryComponent.close();
+        passwordRecoveryComponent.waitPopupClose();
+        Assert.assertFalse(recoverPopup.isDisplayed(), "Password recovery window should be closed.");
     }
 }
