@@ -1,10 +1,11 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
@@ -15,6 +16,12 @@ public abstract class BaseTest {
     protected WebDriver webDriver;
 
     protected String url = "https://krauff.store";
+
+    @BeforeClass
+    static void setupAll() {
+        WebDriverManager.chromedriver().setup();
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+    }
 
     @BeforeMethod(alwaysRun = true)
     public void initDriver() {
