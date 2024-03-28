@@ -26,10 +26,15 @@ public abstract class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void initDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size=1980,1024");
+        options.addArguments("--window-size=1920,720");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--incognito");
 
         webDriver = new ChromeDriver(options);
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
     }
 
     @AfterMethod(alwaysRun = true)
