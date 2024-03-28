@@ -26,8 +26,9 @@ public abstract class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void initDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size=1920,800");
+        options.addArguments("--window-size=1920,720");
         options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--incognito");
 
