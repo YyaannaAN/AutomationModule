@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SearchProductTest extends BaseTest {
@@ -44,12 +45,19 @@ public class SearchProductTest extends BaseTest {
         );
     }
 
+    @DataProvider(name="dataTest")
+    public Object [][] data(){
+        return new Object [][] {
+                {"каструлі"},
+                {"ножі"},
+                {"сертифікат"}
+        };
+    }
     /**
      * Positive search of existing products
      */
-    @Test
-    public void positiveProductSearchTest() {
-        String text = "каструлі";
+    @Test(dataProvider = "dataTest")
+    public void positiveProductSearchTest(String text) {
         webDriver.get(url);
 
         headerComponent.getButton().click();
