@@ -1,4 +1,4 @@
-import basic.pages.components.LoginFormComponent;
+import basic.pages.popup.LoginFormPopup;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class LoginFormTest extends BaseTest {
-    private LoginFormComponent loginFormComponent;
+    private LoginFormPopup loginFormPopup;
 
     @BeforeMethod
     public void beforeMethod() {
-        loginFormComponent = new LoginFormComponent(webDriver);
+        loginFormPopup = new LoginFormPopup(webDriver);
     }
 
     /**
@@ -20,9 +20,9 @@ public class LoginFormTest extends BaseTest {
     @Test
     public void loginFormTitleTest() {
         webDriver.get(url);
-        loginFormComponent.openLoginPopup();
+        loginFormPopup.openLoginPopup();
 
-        WebElement loginTab = loginFormComponent.getLoginTab();
+        WebElement loginTab = loginFormPopup.getLoginTab();
         Assert.assertEquals(
                 loginTab.getText(),
                 "Вхід",
@@ -36,12 +36,12 @@ public class LoginFormTest extends BaseTest {
     @Test
     public void loginFormFieldsAndButtonPresenceTest() {
         webDriver.get(url);
-        loginFormComponent.openLoginPopup();
+        loginFormPopup.openLoginPopup();
 
         // Get form items for testing.
-        WebElement login = loginFormComponent.getLogin();
-        WebElement password = loginFormComponent.getPassword();
-        WebElement submit = loginFormComponent.getSubmit();
+        WebElement login = loginFormPopup.getLogin();
+        WebElement password = loginFormPopup.getPassword();
+        WebElement submit = loginFormPopup.getSubmit();
 
         Assert.assertTrue(
                 login.isDisplayed(),
@@ -70,10 +70,10 @@ public class LoginFormTest extends BaseTest {
     public void emptyFieldsSubmitTest() {
         webDriver.get(url);
 
-        loginFormComponent.openLoginPopup();
-        loginFormComponent.submitForm();
+        loginFormPopup.openLoginPopup();
+        loginFormPopup.submitForm();
 
-        List<WebElement> errorList = loginFormComponent.getErrorList();
+        List<WebElement> errorList = loginFormPopup.getErrorList();
 
         Assert.assertEquals(
                 errorList.size(),

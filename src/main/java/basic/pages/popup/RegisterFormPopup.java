@@ -1,4 +1,4 @@
-package basic.pages.components;
+package basic.pages.popup;
 
 import basic.pages.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class RegisterFormComponent extends BasePage {
+public class RegisterFormPopup extends BasePage {
     @FindBy(xpath = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]")
     private WebElement profile;
 
@@ -36,7 +36,7 @@ public class RegisterFormComponent extends BasePage {
         return errorList;
     }
 
-    public RegisterFormComponent(WebDriver webDriver) {
+    public RegisterFormPopup(WebDriver webDriver) {
         super(webDriver);
     }
 }

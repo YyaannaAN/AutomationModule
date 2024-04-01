@@ -1,4 +1,4 @@
-import basic.pages.components.RegisterFormComponent;
+import basic.pages.popup.RegisterFormPopup;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class RegisterFormTest extends BaseTest {
-    private RegisterFormComponent registerFormComponent;
+    private RegisterFormPopup registerFormPopup;
 
     @BeforeMethod
     public void beforeMethod() {
-        registerFormComponent = new RegisterFormComponent(webDriver);
+        registerFormPopup = new RegisterFormPopup(webDriver);
     }
 
     /**
@@ -22,13 +22,13 @@ public class RegisterFormTest extends BaseTest {
         webDriver.get(url);
 
         // Go to profile window to signin or signup
-        registerFormComponent.getProfile().click();
+        registerFormPopup.getProfile().click();
 
-        registerFormComponent.getSighupTab().click();
+        registerFormPopup.getSighupTab().click();
 
-        registerFormComponent.getSubmit().click();
+        registerFormPopup.getSubmit().click();
 
-        List<WebElement> errorList = registerFormComponent.getErrorList();
+        List<WebElement> errorList = registerFormPopup.getErrorList();
 
         Assert.assertEquals(errorList.size(), 3, "Should be 3 errors");
         Assert.assertEquals(errorList.get(0).getText(), "Вкажіть ім'я", "Should match empty name error.");

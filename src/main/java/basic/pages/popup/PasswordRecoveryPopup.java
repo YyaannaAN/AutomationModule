@@ -1,4 +1,4 @@
-package basic.pages.components;
+package basic.pages.popup;
 
 import basic.pages.BasePage;
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class PasswordRecoveryComponent extends BasePage {
+public class PasswordRecoveryPopup extends BasePage {
 
     @FindBy(xpath = "//span[@class='form-passRecover']/a")
     private WebElement recoverLink;
@@ -79,7 +79,7 @@ public class PasswordRecoveryComponent extends BasePage {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(recoveryLocator));
     }
 
-    public PasswordRecoveryComponent(WebDriver webDriver) {
+    public PasswordRecoveryPopup(WebDriver webDriver) {
         super(webDriver);
     }
 }

@@ -1,4 +1,4 @@
-package basic.pages.components;
+package basic.pages.popup;
 
 import basic.pages.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class LoginFormComponent extends BasePage {
+public class LoginFormPopup extends BasePage {
 
     @FindBy(xpath = "//a[contains(concat(' ', normalize-space(@class), ' '), ' userbar__button ')]")
     private WebElement profile;
@@ -60,7 +60,7 @@ public class LoginFormComponent extends BasePage {
     public void submitForm(){
         getSubmit().click();
     }
-    public LoginFormComponent(WebDriver webDriver) {
+    public LoginFormPopup(WebDriver webDriver) {
         super(webDriver);
     }
 }

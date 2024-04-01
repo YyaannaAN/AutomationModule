@@ -1,5 +1,5 @@
-import basic.pages.components.LoginFormComponent;
-import basic.pages.components.PasswordRecoveryComponent;
+import basic.pages.popup.LoginFormPopup;
+import basic.pages.popup.PasswordRecoveryPopup;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -8,19 +8,19 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class PasswordRecoveryTest extends BaseTest {
-    private PasswordRecoveryComponent passwordRecoveryComponent;
-    private LoginFormComponent loginFormComponent;
+    private PasswordRecoveryPopup passwordRecoveryPopup;
+    private LoginFormPopup loginFormPopup;
 
     @BeforeMethod
     public void beforeMethod() {
-        passwordRecoveryComponent = new PasswordRecoveryComponent(webDriver);
-        loginFormComponent = new LoginFormComponent(webDriver);
+        passwordRecoveryPopup = new PasswordRecoveryPopup(webDriver);
+        loginFormPopup = new LoginFormPopup(webDriver);
     }
 
     public void goToPasswordRecoveryPage() {
         webDriver.get(url);
-        loginFormComponent.openLoginPopup();
-        passwordRecoveryComponent.openRecoveryPopup();
+        loginFormPopup.openLoginPopup();
+        passwordRecoveryPopup.openRecoveryPopup();
     }
 
     /**
@@ -30,9 +30,9 @@ public class PasswordRecoveryTest extends BaseTest {
     public void requiredElementsPresenceTest() {
         goToPasswordRecoveryPage();
 
-        WebElement recoverTitle = passwordRecoveryComponent.getRecoverTitle();
-        WebElement recoverMessage = passwordRecoveryComponent.getRecoverMessage();
-        WebElement submit = passwordRecoveryComponent.getSubmit();
+        WebElement recoverTitle = passwordRecoveryPopup.getRecoverTitle();
+        WebElement recoverMessage = passwordRecoveryPopup.getRecoverMessage();
+        WebElement submit = passwordRecoveryPopup.getSubmit();
 
         // check Recovery page title
         Assert.assertTrue(recoverTitle.isDisplayed(), "Recovery page title should be visible.");
@@ -48,7 +48,7 @@ public class PasswordRecoveryTest extends BaseTest {
         Assert.assertTrue(submit.isEnabled(), "Submit button should be enabled in the form.");
 
         // Get recovery email field
-        WebElement recoverEmail = passwordRecoveryComponent.getRecoverEmail();
+        WebElement recoverEmail = passwordRecoveryPopup.getRecoverEmail();
 
         Assert.assertTrue(recoverEmail.isDisplayed(), "Recovery email field should be present in the form.");
     }
@@ -61,13 +61,13 @@ public class PasswordRecoveryTest extends BaseTest {
         goToPasswordRecoveryPage();
 
         // Get recovery email field
-        WebElement recoverEmail = passwordRecoveryComponent.getRecoverEmail();
+        WebElement recoverEmail = passwordRecoveryPopup.getRecoverEmail();
 
         Assert.assertEquals(recoverEmail.getText(), "", "Recovery email field should be blank.");
 
         // Get recovery form submit button
-        passwordRecoveryComponent.submit();
-        List<WebElement> errorList = passwordRecoveryComponent.getErrorList();
+        passwordRecoveryPopup.submit();
+        List<WebElement> errorList = passwordRecoveryPopup.getErrorList();
 
         Assert.assertEquals(errorList.size(), 1, "Should be 1 error");
         Assert.assertEquals(errorList.get(0).getText(), "Некоректна адреса електронної пошти", "Should match empty email error.");
@@ -81,14 +81,14 @@ public class PasswordRecoveryTest extends BaseTest {
         goToPasswordRecoveryPage();
 
         // Get recovery email field
-        WebElement recoverEmail = passwordRecoveryComponent.getRecoverEmail();
+        WebElement recoverEmail = passwordRecoveryPopup.getRecoverEmail();
 
         Assert.assertEquals(recoverEmail.getText(), "", "Recovery email field should be blank.");
         recoverEmail.sendKeys("1235@sjdfk.sj");
 
         // Get recovery form submit button
-        passwordRecoveryComponent.submit();
-        List<WebElement> errorList = passwordRecoveryComponent.getErrorList();
+        passwordRecoveryPopup.submit();
+        List<WebElement> errorList = passwordRecoveryPopup.getErrorList();
 
         Assert.assertEquals(errorList.size(), 1, "Should be 1 error");
         Assert.assertEquals(errorList.get(0).getText(), "Немає користувача з такою адресою е-пошти", "Should match empty email error.");
@@ -101,12 +101,12 @@ public class PasswordRecoveryTest extends BaseTest {
     public void popupCloseTest() {
         goToPasswordRecoveryPage();
 
-        WebElement recoverPopup = passwordRecoveryComponent.getRecoverPopup();
+        WebElement recoverPopup = passwordRecoveryPopup.getRecoverPopup();
 
         Assert.assertTrue(recoverPopup.isDisplayed(), "Password recovery window should be visible.");
 
-        passwordRecoveryComponent.close();
-        passwordRecoveryComponent.waitPopupClose();
+        passwordRecoveryPopup.close();
+        passwordRecoveryPopup.waitPopupClose();
         Assert.assertFalse(recoverPopup.isDisplayed(), "Password recovery window should be closed.");
     }
 }
