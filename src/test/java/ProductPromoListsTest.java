@@ -17,7 +17,7 @@ public class ProductPromoListsTest extends BaseTest {
     /**
      * Test information in the promo list and in the details.
      */
-    @Test
+    @Test(groups = {"positive"})
     public void promoItemsPriceMatchTest() {
         webDriver.get(url);
         String listPrice = homePage.getFirstProductListPrice();

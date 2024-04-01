@@ -17,7 +17,7 @@ public class LoginFormTest extends BaseTest {
     /**
      * Simple test of Login tab
      */
-    @Test
+    @Test(groups = {"positive"})
     public void loginFormTitleTest() {
         webDriver.get(url);
         loginFormPopup.openLoginPopup();
@@ -33,7 +33,7 @@ public class LoginFormTest extends BaseTest {
     /**
      * Should be 2 fields in the login form.
      */
-    @Test
+    @Test(groups = {"positive"})
     public void loginFormFieldsAndButtonPresenceTest() {
         webDriver.get(url);
         loginFormPopup.openLoginPopup();

@@ -16,13 +16,14 @@ public class StoreReviewTest extends BaseTest {
     /**
      * Check review author (at least one review with author name)
      */
-    @Test
+    @Test(groups = {"positive"})
     public void reviewAuthorPresenceTest() {
         webDriver.get(url);
         Assert.assertTrue(
                 storeReviewComponent.getAuthor().isDisplayed(),
                 "Review author should be visible on the page"
         );
+
         Assert.assertFalse(
                 storeReviewComponent.getAuthorName().isEmpty(),
                 "Review author name should be present"

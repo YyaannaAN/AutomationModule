@@ -22,7 +22,7 @@ public class SearchProductTest extends BaseTest {
      * Check that search field is invisible at the beginning,
      * but becomes visible after clicking on the search button.
      */
-    @Test
+    @Test(groups = {"positive"})
     public void searchFieldAvailabilityTest() {
         webDriver.get(url);
 
@@ -56,7 +56,7 @@ public class SearchProductTest extends BaseTest {
     /**
      * Positive search of existing products
      */
-    @Test(dataProvider = "dataTest")
+    @Test(dataProvider = "dataTest",groups = {"positive"})
     public void positiveProductSearchTest(String text) {
         webDriver.get(url);
 
@@ -82,10 +82,6 @@ public class SearchProductTest extends BaseTest {
     public void negativeProductSearchTest() {
         String text = "akasjdfkasjkdfsajfd";
         webDriver.get(url);
-//        String searchInputXpath = "//input[contains(concat(' ', normalize-space(@class), ' '), ' search__input ')]";
-//        String searchButtonXpath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' search__button ')]";
-//
-//        WebElement button = webDriver.findElement(By.xpath(searchButtonXpath));
 
         headerComponent.getButton().click();
 
@@ -100,15 +96,14 @@ public class SearchProductTest extends BaseTest {
                 .sendKeys(Keys.ENTER)
                 .perform();
 
-        Assert.assertTrue(searchPage.getNotFoundElement().isDisplayed(),
-                "Not found message should be visible.");
+        Assert.assertTrue(
+                searchPage.getNotFoundElement().isDisplayed(),
+                "Not found message should be visible."
+        );
 
-        // Looking search result list elements.
-        // NOTE: this check takes to long (default timeout specified in BaseTest)
-        // because these elements will never appear
-//        String xpathCard = "//div[@class='catalogCard j-catalog-card']";
-//        List<WebElement> catalogCards = getElementsByXpath(xpathCard);
-        Assert.assertTrue(searchPage.getCatalogCards().isEmpty(),
-                "The list of search result products should be empty.");
+        Assert.assertTrue(
+                searchPage.getCatalogCards().isEmpty(),
+                "The list of search result products should be empty."
+        );
     }
 }
