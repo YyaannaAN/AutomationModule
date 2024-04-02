@@ -13,7 +13,7 @@ public abstract class BaseTest {
 
     protected String url = "https://krauff.store";
 
-    @BeforeClass
+    @BeforeClass()
     static void setupAll() {
         WebDriverManager.chromedriver().setup();
         System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
@@ -37,5 +37,4 @@ public abstract class BaseTest {
     public void destroy() {
         webDriver.quit();
     }
-
 }

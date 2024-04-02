@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class StoreReviewTest extends BaseTest {
     private StoreReviewComponent storeReviewComponent;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         storeReviewComponent = new StoreReviewComponent(webDriver);
     }

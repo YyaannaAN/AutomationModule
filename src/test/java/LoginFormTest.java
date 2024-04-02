@@ -9,7 +9,7 @@ import java.util.List;
 public class LoginFormTest extends BaseTest {
     private LoginFormPopup loginFormPopup;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         loginFormPopup = new LoginFormPopup(webDriver);
     }

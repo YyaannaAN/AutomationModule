@@ -11,7 +11,7 @@ public class PasswordRecoveryTest extends BaseTest {
     private PasswordRecoveryPopup passwordRecoveryPopup;
     private LoginFormPopup loginFormPopup;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         passwordRecoveryPopup = new PasswordRecoveryPopup(webDriver);
         loginFormPopup = new LoginFormPopup(webDriver);

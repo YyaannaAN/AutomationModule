@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class BannerListTest extends BaseTest {
     private BannerListComponent bannerListComponent;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
 
         bannerListComponent = new BannerListComponent(webDriver);

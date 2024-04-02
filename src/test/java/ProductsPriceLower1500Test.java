@@ -7,7 +7,7 @@ public class ProductsPriceLower1500Test extends BaseTest{
 
     private EverythingLower1500Page lower1500Page;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         lower1500Page = new EverythingLower1500Page(webDriver);
     }
@@ -21,7 +21,6 @@ public class ProductsPriceLower1500Test extends BaseTest{
         webDriver.get(catalogUrl);
 
         int maxPrice = lower1500Page.getMaxPrice();
-        System.out.println(maxPrice);
 
         Assert.assertFalse(
                 maxPrice > 1500 ,

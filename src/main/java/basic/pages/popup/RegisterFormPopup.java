@@ -20,6 +20,11 @@ public class RegisterFormPopup extends BasePage {
     @FindBy(xpath = "//div[@class='form-error']/div[contains(concat(' ', normalize-space(@class), ' '), ' form-error-box ')]")
     private List<WebElement> errorList;
 
+    @FindBy(xpath = "//div[@class='session-message s-error']")
+    private WebElement captchaError;
+
+    public WebElement getCaptchaError() { return captchaError; }
+
     public WebElement getProfile() {
         return profile;
     }
@@ -34,6 +39,15 @@ public class RegisterFormPopup extends BasePage {
 
     public List<WebElement> getErrorList() {
         return errorList;
+    }
+
+    public void openPopup() {
+        getProfile().click();
+        getSighupTab().click();
+    }
+
+    public void submit() {
+        getSubmit().click();
     }
 
     public RegisterFormPopup(WebDriver webDriver) {

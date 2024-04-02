@@ -8,7 +8,7 @@ public class ProductPromoListsTest extends BaseTest {
     private ProductDetailsPage productDetailsPage;
     private HomePage homePage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         productDetailsPage = new ProductDetailsPage(webDriver);
         homePage = new HomePage(webDriver);

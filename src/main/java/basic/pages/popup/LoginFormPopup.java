@@ -52,7 +52,6 @@ public class LoginFormPopup extends BasePage {
     }
 
     public void openLoginPopup() {
-
         getProfile().click();
         getLoginTab().click();
     }

@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name = "Automation Module Test" parallel="classes" thread-count="1">
-    <test name="Teapot Website Test">
-        <classes>
-            <class name="SearchProductTest"/>
-            <class name="PasswordRecoveryTest"/>
-            <class name="StoreReviewTest"/>
-            <class name="ProductPromoListsTest"/>
-            <class name="BannerListTest"/>
-            <class name="LoginFormTest"/>
-            <class name="RegisterFormTest"/>
-            <class name="ProductsPriceLower1500Test"/>
-        </classes>
-    </test>
+    <suite-files>
+        <suite-file path="TestNG-Positive.xml"/>
+        <suite-file path="TestNG-Negative.xml"/>
+    </suite-files>
 </suite>

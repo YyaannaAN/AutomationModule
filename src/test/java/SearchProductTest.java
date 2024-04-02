@@ -12,7 +12,7 @@ public class SearchProductTest extends BaseTest {
     private HeaderComponent headerComponent;
     private SearchPage searchPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         headerComponent = new HeaderComponent(webDriver);
         searchPage = new SearchPage(webDriver);
