@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class EverythingLower1500Page extends BasePage{
+public class LessThanFixedPricePage extends BasePage{
 
     public List<WebElement> getProductListPrice() {
         return productListPrice;
@@ -24,7 +24,7 @@ public class EverythingLower1500Page extends BasePage{
         return maxPrice;
     }
 
-    public EverythingLower1500Page(WebDriver webDriver) {
+    public LessThanFixedPricePage(WebDriver webDriver) {
         super(webDriver);
     }
 }

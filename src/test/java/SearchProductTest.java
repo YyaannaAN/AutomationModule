@@ -53,6 +53,7 @@ public class SearchProductTest extends BaseTest {
                 {"сертифікат"}
         };
     }
+
     /**
      * Positive search of existing products
      */

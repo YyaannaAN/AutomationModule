@@ -14,7 +14,7 @@
             <class name="BannerListTest"/>
             <class name="LoginFormTest"/>
             <class name="RegisterFormTest"/>
-            <class name="ProductsPriceLower1500Test"/>
+            <class name="CategoryListMaxPriceTest"/>
             <class name="SearchProductTest"/>
         </classes>
     </test>
