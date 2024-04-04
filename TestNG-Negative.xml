@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Teapot Website Test" verbose="1" parallel="classes">
+    <test name="Negative Tests">
+        <groups>
+            <run>
+                <include name="negative"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="PasswordRecoveryTest"/>
+            <class name="StoreReviewTest"/>
+            <class name="ProductPromoListsTest"/>
+            <class name="BannerListTest"/>
+            <class name="LoginFormTest"/>
+            <class name="RegisterFormTest"/>
+            <class name="CategoryListMaxPriceTest"/>
+            <class name="SearchProductTest"/>
+        </classes>
+    </test>
+</suite>
