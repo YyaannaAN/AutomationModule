@@ -1,5 +1,6 @@
 import basic.pages.SearchPage;
 import basic.pages.components.HeaderComponent;
+import basic.utils.Retry;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -18,11 +19,19 @@ public class SearchProductTest extends BaseTest {
         searchPage = new SearchPage(webDriver);
     }
 
+    private int myCount = 0;
+
+    @Test(groups = {"positive"}, retryAnalyzer = Retry.class)
+    public void test() {
+        Assert.assertFalse(myCount++ < 2, "should be 3 attempts");
+    }
+
+
     /**
      * Check that search field is invisible at the beginning,
      * but becomes visible after clicking on the search button.
      */
-    @Test(groups = {"positive"})
+    @Test(groups = {"positive"}, retryAnalyzer = Retry.class)
     public void searchFieldAvailabilityTest() {
         webDriver.get(url);
 
@@ -34,6 +43,7 @@ public class SearchProductTest extends BaseTest {
                 headerComponent.getClose().isDisplayed(),
                 "Close search button should be invisible before clicking on the search button"
         );
+
         headerComponent.getButton().click();
         Assert.assertTrue(
                 headerComponent.getInput().isDisplayed(),
