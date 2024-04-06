@@ -26,7 +26,7 @@ public class PasswordRecoveryTest extends BaseTest {
     /**
      * Check recovery email form exits with corresponding content.
      */
-    @Test(groups = {"positive"})
+    @Test(groups = {"positive"}, priority = 2)
     public void requiredElementsPresenceTest() {
         goToPasswordRecoveryPage();
 
@@ -80,7 +80,7 @@ public class PasswordRecoveryTest extends BaseTest {
     /**
      * Check password recovery form for empty email field submission
      */
-    @Test(groups = {"negative"})
+    @Test(groups = {"negative"}, priority = 2)
     public void emptyEmailSubmitTest() {
         goToPasswordRecoveryPage();
 
@@ -100,7 +100,7 @@ public class PasswordRecoveryTest extends BaseTest {
     /**
      * Check password recovery form for incorrect email value submission
      */
-    @Test(groups = {"negative"})
+    @Test(groups = {"negative"}, priority = 2)
     public void incorrectEmailErrorTest() {
         goToPasswordRecoveryPage();
 
@@ -133,7 +133,7 @@ public class PasswordRecoveryTest extends BaseTest {
     /**
      * Check password recovery window can be closed.
      */
-    @Test(groups = {"positive"})
+    @Test(groups = {"positive"}, priority = 2)
     public void popupCloseTest() {
         goToPasswordRecoveryPage();
 

@@ -17,7 +17,7 @@ public class RegisterFormTest extends BaseTest {
     /**
      * Simple test of Register tab name
      */
-    @Test(groups = {"positive"})
+    @Test(groups = {"positive"}, priority = 2)
     public void tabNameTest() {
         webDriver.get(url);
         registerFormPopup.openPopup();
@@ -34,7 +34,7 @@ public class RegisterFormTest extends BaseTest {
     /**
      * Check register form for empty fields submission
      */
-    @Test(groups = {"negative"})
+    @Test(groups = {"negative"}, priority = 2)
     public void emptyFieldsSubmitTest() {
         webDriver.get(url);
         registerFormPopup.openPopup();
