@@ -25,7 +25,7 @@ public class CategoryListMaxPriceTest extends BaseTest {
     /**
      * Get max price from the list and check it to be lower than expected max price.
      */
-    @Test(dataProvider = "categoryMaxPriceTest", groups = {"positive"})
+    @Test(dataProvider = "categoryMaxPriceTest", groups = {"positive"}, priority = 1)
     public void MaxListPriceTest(String catalog, int expectedMaxPrice) {
         String viewParams = "/filter/sort_price_high=DESC;view_type=list_view/";
         String catalogUrl = url + catalog + viewParams;

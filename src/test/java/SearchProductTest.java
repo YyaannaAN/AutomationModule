@@ -22,7 +22,7 @@ public class SearchProductTest extends BaseTest {
      * Check that search field is invisible at the beginning,
      * but becomes visible after clicking on the search button.
      */
-    @Test(groups = {"positive"})
+    @Test(groups = {"positive"}, priority = 2)
     public void searchFieldAvailabilityTest() {
         webDriver.get(url);
 
@@ -57,7 +57,7 @@ public class SearchProductTest extends BaseTest {
     /**
      * Positive search of existing products
      */
-    @Test(dataProvider = "dataTest",groups = {"positive"})
+    @Test(dataProvider = "dataTest",groups = {"positive"}, priority = 1)
     public void positiveProductSearchTest(String text) {
         webDriver.get(url);
 
@@ -79,7 +79,7 @@ public class SearchProductTest extends BaseTest {
     /**
      * Negative search of non-existing products
      */
-    @Test(groups = {"negative"})
+    @Test(groups = {"negative"}, priority = 1)
     public void negativeProductSearchTest() {
         String text = "akasjdfkasjkdfsajfd";
         webDriver.get(url);

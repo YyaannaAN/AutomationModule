@@ -16,7 +16,7 @@ public class StoreReviewTest extends BaseTest {
     /**
      * Check review author (at least one review with author name)
      */
-    @Test(groups = {"positive"})
+    @Test(groups = {"positive"}, priority = 2)
     public void reviewAuthorPresenceTest() {
         webDriver.get(url);
         Assert.assertTrue(
