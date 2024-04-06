@@ -19,19 +19,11 @@ public class SearchProductTest extends BaseTest {
         searchPage = new SearchPage(webDriver);
     }
 
-    private int myCount = 0;
-
-    @Test(groups = {"positive"}, retryAnalyzer = Retry.class)
-    public void test() {
-        Assert.assertFalse(myCount++ < 2, "should be 3 attempts");
-    }
-
-
     /**
      * Check that search field is invisible at the beginning,
      * but becomes visible after clicking on the search button.
      */
-    @Test(groups = {"positive"}, retryAnalyzer = Retry.class)
+    @Test(groups = {"positive"}, priority = 2, retryAnalyzer = Retry.class)
     public void searchFieldAvailabilityTest() {
         webDriver.get(url);
 
@@ -67,7 +59,7 @@ public class SearchProductTest extends BaseTest {
     /**
      * Positive search of existing products
      */
-    @Test(dataProvider = "dataTest",groups = {"positive"})
+    @Test(dataProvider = "dataTest",groups = {"positive"}, priority = 1)
     public void positiveProductSearchTest(String text) {
         webDriver.get(url);
 
@@ -89,7 +81,7 @@ public class SearchProductTest extends BaseTest {
     /**
      * Negative search of non-existing products
      */
-    @Test(groups = {"negative"})
+    @Test(groups = {"negative"}, priority = 1)
     public void negativeProductSearchTest() {
         String text = "akasjdfkasjkdfsajfd";
         webDriver.get(url);

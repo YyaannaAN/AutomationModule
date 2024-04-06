@@ -17,7 +17,7 @@ public class LoginFormTest extends BaseTest {
     /**
      * Simple test of Login tab
      */
-    @Test(groups = {"positive"})
+    @Test(groups = {"positive"}, priority = 2)
     public void loginFormTitleTest() {
         webDriver.get(url);
         loginFormPopup.openLoginPopup();
@@ -33,7 +33,7 @@ public class LoginFormTest extends BaseTest {
     /**
      * Should be 2 fields in the login form.
      */
-    @Test(groups = {"positive"})
+    @Test(groups = {"positive"}, priority = 2)
     public void loginFormFieldsAndButtonPresenceTest() {
         webDriver.get(url);
         loginFormPopup.openLoginPopup();
@@ -66,7 +66,7 @@ public class LoginFormTest extends BaseTest {
     /**
      * Check login form for empty fields submission
      */
-    @Test(groups = {"negative"})
+    @Test(groups = {"negative"}, priority = 2)
     public void emptyFieldsSubmitTest() {
         webDriver.get(url);
 
