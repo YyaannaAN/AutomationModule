@@ -1,4 +1,5 @@
 import basic.pages.components.BannerListComponent;
+import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,6 +13,7 @@ public class BannerListTest extends BaseTest {
         bannerListComponent = new BannerListComponent(webDriver);
     }
 
+    @Description("The list of items in banners grid should not be empty.")
     /**
      * The list of items in banners grid should not be empty.
      */
